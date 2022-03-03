@@ -1,0 +1,22 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    container_name: postgres-manual
+    environment:
+      - POSTGRES_PASSWORD=Password#123
+      - POSTGRES_DB=customers
+    ports:
+      - 5432:5432
+
+  flyway:
+    image: flyway/flyway
+    container_name: flyway-manual
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/sh
+    volumes:
+      - ./sql:/flyway/sql
+      - ./conf:/flyway/conf
+    depends_on:
+      - db
