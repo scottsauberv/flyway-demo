@@ -10,8 +10,9 @@ services:
 
   flyway:
     image: flyway/flyway
-    command: -url=jdbc:postgresql://db:5432/customers -user=postgres -password=Password#123 -connectRetries=20 migrate
+    command: migrate
     volumes:
       - ./sql:/flyway/sql
+      - ./conf:/flyway/conf
     depends_on:
       - db
