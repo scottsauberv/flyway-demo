@@ -1,0 +1,16 @@
+name: Pull Request Verify
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Verify Migrate
+        run: docker-compose up -d
