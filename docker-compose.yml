@@ -2,6 +2,7 @@ version: "3"
 services:
   db:
     image: postgres
+    container_name: postgres-migrate
     environment:
       - POSTGRES_PASSWORD=Password#123
       - POSTGRES_DB=customers
@@ -10,6 +11,7 @@ services:
 
   flyway:
     image: flyway/flyway
+    container_name: flyway-migrate
     command: migrate
     volumes:
       - ./sql:/flyway/sql
